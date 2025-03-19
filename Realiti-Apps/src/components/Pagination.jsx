@@ -4,19 +4,19 @@ const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
   return (
     <div className="flex justify-center mt-4">
       <button
-        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+        className="px-3 py-1 mx-1 bg-orange-300 rounded disabled:opacity-50 text-black"
         disabled={currentPage === 1}
-        className="px-4 py-2 border rounded mr-2 disabled:opacity-50"
+        onClick={() => setCurrentPage(currentPage - 1)}
       >
-        Previous
+        Prev
       </button>
-      <span className="px-4 py-2">
-        Page {currentPage} of {totalPages}
+      <span className="px-3 py-3  text-white align-center rounded">
+        {currentPage}
       </span>
       <button
-        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+        className="px-3 py-1 mx-1 bg-orange-300 text-black rounded disabled:opacity-50 "
         disabled={currentPage === totalPages}
-        className="px-4 py-2 border rounded ml-2 disabled:opacity-50"
+        onClick={() => setCurrentPage(currentPage + 1)}
       >
         Next
       </button>
