@@ -8,6 +8,14 @@ import {
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.CartDetails);
+  const totalValue = cartItems.reduce((x, item) => {
+    console.log(item.quantity, item);
+    if (item.quantity) {
+      const calc = item.price * item.quantity;
+      return calc + x;
+    }
+  }, 0);
+  console.log(totalValue, cartItems);
   const dispatch = useDispatch();
 
   return (
@@ -45,9 +53,13 @@ const Cart = () => {
           ))}
         </ul>
       )}
-      <div className="flex justify-end">
+      <div className="flex justify-between mt-4">
+        <p className="w-30 text-black bg-white text-center rounded p-3 mr-4">
+          Total : {totalValue.toFixed(2)}
+        </p>
+
         <button
-          className="w-40 text-black bg-white mt-4 "
+          className="w-40 text-black bg-white  "
           onClick={() => dispatch(IsCart(false))}
         >
           Close Cart
